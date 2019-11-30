@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.faculdade.pa_ap2">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -12,9 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.TestLibActivity"></activity>
-        <activity android:name=".Activities.ContactDetailsActivity" />
-        <activity android:name=".Activities.NewContactActivity" />
+        <activity android:name=".Activities.ContactDetailsActivity"></activity>
+        <activity android:name=".Activities.NewContactActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity android:name=".Activities.ContactsActivity" />
         <activity android:name=".Activities.VideosActivity" />
         <activity android:name=".Activities.Mp3Activity" />
@@ -26,5 +43,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
