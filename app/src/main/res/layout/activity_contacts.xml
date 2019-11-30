@@ -4,6 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/basic_background"
     tools:context=".Activities.ContactsActivity">
+
+    <ImageView
+        android:id="@+id/addContactButton"
+        android:layout_width="72dp"
+        android:layout_height="74dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96"
+        app:srcCompat="@drawable/addContact_button"
+        android:contentDescription="TODO" />
+
+    <EditText
+        android:id="@+id/search_field"
+        style="@style/Widget.AppCompat.AutoCompleteTextView"
+        android:layout_width="365dp"
+        android:layout_height="45dp"
+        android:background="@drawable/search_field"
+        android:drawableStart="@drawable/search_icon"
+        android:drawablePadding="15dip"
+        android:textColorHint="@color/lightGrey"
+        android:ems="10"
+        android:fontFamily="@font/calibre_regular"
+        android:hint="@string/Search"
+        android:inputType="textPersonName"
+        android:paddingLeft="20dip"
+        android:paddingRight="26dip"
+        android:paddingTop="5dip"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.16"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/title_Contact"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/calibre_regular"
+        android:text="Contacts"
+        android:textColor="@android:color/background_light"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.108"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

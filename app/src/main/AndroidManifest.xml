@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ContactsActivity"></activity>
-        <activity android:name=".Activities.ImagesActivity" />
+        <activity android:name=".Activities.ContactDetailsActivity"></activity>
+        <activity android:name=".Activities.NewContactActivity" />
+        <activity android:name=".Activities.ContactsActivity" />
         <activity android:name=".Activities.VideosActivity" />
         <activity android:name=".Activities.Mp3Activity" />
         <activity android:name=".Activities.MainActivity">

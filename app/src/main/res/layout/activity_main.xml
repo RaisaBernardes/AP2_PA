@@ -8,51 +8,40 @@
     tools:context=".Activities.MainActivity" >
 
     <ImageView
-        android:id="@+id/images_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.869"
-        app:srcCompat="@drawable/images_button"
-        android:contentDescription="TODO" />
-
-    <ImageView
         android:id="@+id/mp3_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="184dp"
+        android:layout_height="141dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.642"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.685"
-        app:srcCompat="@drawable/mp3_button" />
+        app:layout_constraintVertical_bias="0.804"
+        app:srcCompat="@drawable/mp3_button"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/videos_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="142dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.683"
+        app:layout_constraintHorizontal_bias="0.838"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.393"
-        app:srcCompat="@drawable/videos_button" />
+        app:layout_constraintVertical_bias="0.516"
+        app:srcCompat="@drawable/videos_button"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/contacts_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="227dp"
+        android:layout_height="134dp"
+        android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.238"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.165"
-        app:srcCompat="@drawable/contacts_button"
-        android:contentDescription="TODO" />
+        app:layout_constraintVertical_bias="0.214"
+        app:srcCompat="@drawable/contacts_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>
