@@ -16,7 +16,6 @@ public class NewContactActivity extends AppCompatActivity {
 
     private TextView aCancelButton;
     private ImageView aCameraButton;
-    private Button apagarIssoDepois;
 
     //TODO: logic of all 3 fields, camera button and save button. 
 
