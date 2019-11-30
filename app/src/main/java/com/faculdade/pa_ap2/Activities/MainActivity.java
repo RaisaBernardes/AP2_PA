@@ -12,7 +12,6 @@ import com.faculdade.pa_ap2.R;
 public class MainActivity extends AppCompatActivity {
 
     private ImageView aContactsButton;
-    private ImageView aImagesButton;
     private ImageView aMp3Button;
     private ImageView aVideosButton;
 
