@@ -23,8 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Binding variables to layout views/buttons
         aContactsButton = findViewById(R.id.contacts_button);
-        aImagesButton = findViewById(R.id.images_button);
-        aMp3Button = findViewById(R.id.images_button);
+        aMp3Button = findViewById(R.id.mp3_button);
         aVideosButton = findViewById(R.id.videos_button);
 
 
@@ -38,13 +37,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //MainActivity to ImagesActivity
-        aImagesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ImagesActivity.class));
-            }
-        });
 
         //MainActivity to Mp3Activity
         aMp3Button.setOnClickListener(new View.OnClickListener() {
