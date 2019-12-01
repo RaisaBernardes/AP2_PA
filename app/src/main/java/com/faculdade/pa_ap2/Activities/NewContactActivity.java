@@ -49,11 +49,10 @@ public class NewContactActivity extends AppCompatActivity {
         //Asking for permission to access camera
         if(Build.VERSION.SDK_INT >= 23){
             requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-            showToast("Version less than Marshmallow");
-        }else {
             showToast("Version greater than Marshmallow");
+        }else {
+            showToast("Version less than Marshmallow");
         }
-
 
 
        //PHOTO BUTTON: Accessing Camera
@@ -96,7 +95,7 @@ public class NewContactActivity extends AppCompatActivity {
 
             if(photoFile != null) {
                 aPathToFile = photoFile.getAbsolutePath(); //We have the path to our file in the variable "pathToFile"
-                Uri photoUri = FileProvider.getUriForFile(NewContactActivity.this, "${applicationId}.provider", photoFile);
+                Uri photoUri = FileProvider.getUriForFile(NewContactActivity.this, "com.faculdade.pa_ap2.Provider", photoFile);
                 takePic.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 startActivityForResult(takePic, 1);
             }
@@ -106,7 +105,8 @@ public class NewContactActivity extends AppCompatActivity {
 
         //Creating the file where the photo will be stored
         private File createPhotoFile(){
-        String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String name = "esperanca";
+                //new SimpleDateFormat("").format(new Date()).toString();
         File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = null;
         try{
