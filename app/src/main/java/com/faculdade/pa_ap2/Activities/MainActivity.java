@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView aContactsButton;
     private ImageView aMp3Button;
     private ImageView aVideosButton;
-    private Button aTestButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         aContactsButton = findViewById(R.id.contacts_button);
         aMp3Button = findViewById(R.id.mp3_button);
         aVideosButton = findViewById(R.id.videos_button);
-        aTestButton = findViewById(R.id.test_button);
+
 
         //----- Navigating between activities -----
 
@@ -55,12 +55,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // MainActivity to TestLibActivity
-        aTestButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, TestLibActivity.class));
-            }
-        });
     }
 }

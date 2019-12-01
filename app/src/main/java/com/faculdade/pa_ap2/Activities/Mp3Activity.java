@@ -9,14 +9,14 @@ import com.faculdade.pa_ap2.R;
 
 public class Mp3Activity extends AppCompatActivity {
 
-    private String vamoLa = "Downloadando...";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mp3_activity);
 
-        DownloadFacade.getInstance().getDownloadController().download(this, vamoLa);
+        DownloadFacade.getInstance().getDownloadController()
+                .download(this, "https://www.infoescola.com/wp-content/uploads/2017/07/baleia-azul-565369243.jpg");
+                //Obs.: The activity is already a context!
 
 
     }
