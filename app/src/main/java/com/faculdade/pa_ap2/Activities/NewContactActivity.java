@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.faculdade.pa_ap2.R;
 
@@ -45,24 +46,29 @@ public class NewContactActivity extends AppCompatActivity {
         aCameraButton = findViewById(R.id.photo_button);
         aImageView = findViewById(R.id.image);
 
+        //Asking for permission to access camera
+        if(Build.VERSION.SDK_INT >= 23){
+            requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+            showToast("Version less than Marshmallow");
+        }else {
+            showToast("Version greater than Marshmallow");
+        }
+
+
+
+       //PHOTO BUTTON: Accessing Camera
+        aCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                takeAPictureAction();
+            }
+        });
 
         //CANCEL BUTTON: Going back to previous Activity
         aCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
-            }
-        });
-
-        if(Build.VERSION.SDK_INT >= 23){
-            requestPermissions(new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-        }
-
-       //Accessing camera
-        aCameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                takeAPictureAction();
             }
         });
         }
@@ -77,15 +83,20 @@ public class NewContactActivity extends AppCompatActivity {
             }
         }
 
+        //Toast message
+        private void showToast(String msg){
+            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
+        }
+
         private void takeAPictureAction(){
-        Intent takePic = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
+        Intent takePic = new Intent("android.media.action.IMAGE_CAPTURE");
         if(takePic.resolveActivity(getPackageManager()) != null){
-            File photoFile = null;
+            File photoFile = null; //This is the file where our photo will be stored
             photoFile = createPhotoFile();
 
             if(photoFile != null) {
                 aPathToFile = photoFile.getAbsolutePath(); //We have the path to our file in the variable "pathToFile"
-                Uri photoUri = FileProvider.getUriForFile(NewContactActivity.this, "com.faculdade.PA_AP2.fileprovider", photoFile);
+                Uri photoUri = FileProvider.getUriForFile(NewContactActivity.this, "${applicationId}.provider", photoFile);
                 takePic.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 startActivityForResult(takePic, 1);
             }
@@ -93,13 +104,13 @@ public class NewContactActivity extends AppCompatActivity {
         }
         }
 
+        //Creating the file where the photo will be stored
         private File createPhotoFile(){
         String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         File image = null;
-
         try{
-            image = File.createTempFile(name, ".jpg", storageDir);
+           image = File.createTempFile(name, ".jpg", storageDir); //Actually creating the file
         }
         catch(IOException e){
             Log.d("mylog", "Exception: " + e.toString());
