@@ -39,16 +39,24 @@ public class DownloadService extends Service {
             Log.println(Log.INFO, "INTERNET PERMISSION", "permission refused");
         }
 
+        // Apenas para ter certeza de permissão da escrita para uso em testes
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            Log.println(Log.INFO, "WRITE_EXTERNAL_STORAGE", "permission granted");
+        } else {
+            Log.println(Log.INFO, "WRITE_EXTERNAL_STORAGE", "permission refused");
+        }
+
 //        File file = new File(getFilesDir(), "downloads");
 //        if (!file.exists()) {
 //            file.mkdir();
 //        }
-//
-//        DownloadManager.Request request = new DownloadManager.Request(uriURL)
-//                .setDestinationUri(Uri.fromFile(file));
-//
-//        DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
-//        downloadManager.enqueue(request);
+        File file = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "pa_ap2");
+
+        DownloadManager.Request request = new DownloadManager.Request(uriURL)
+                .setDestinationUri(Uri.fromFile(file));
+
+        DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+        downloadManager.enqueue(request);
 
         Log.println(Log.INFO, "DOWNLOADING URL", url);
     }
@@ -64,8 +72,7 @@ public class DownloadService extends Service {
             // For our sample, we just sleep for 5 seconds.
 
             String url = msg.getData().getString("url");
-            Log.println(Log.INFO, "DOWNLOAD THREAD", "url: " + url);
-            // TODO download
+            Log.println(Log.INFO, "DOWNLOAD THREAD", "arg1: " + msg.arg1 + "; url: " + url);
             download(url);
 
             // Stop the service using the startId, so that we don't stop
@@ -109,7 +116,7 @@ public class DownloadService extends Service {
         Bundle bundle = new Bundle();
         bundle.putString("url", url);
         message.setData(bundle);
-        Log.println(Log.INFO, "MESSAGE CONTENT", message.arg1 + "; " + message.getData().getString("url"));
+//        Log.println(Log.INFO, "MESSAGE CONTENT", message.arg1 + "; " + message.getData().getString("url"));
 
         // Enviando mensagem
         serviceHandler.sendMessage(message);
