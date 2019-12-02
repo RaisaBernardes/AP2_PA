@@ -1,5 +1,6 @@
 package com.faculdade.libdownloadmanager;
 
+import android.Manifest;
 import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,12 +17,14 @@ import androidx.annotation.Nullable;
 
 public class DownloadService extends Service {
 
+    private final int REQUEST_CODE = 1;
+
     private Looper serviceLooper;
     private ServiceHandler serviceHandler;
 
     private void download(String url) {
         // TODO download
-        Log.println(Log.INFO, "DOWNLOAD", url);
+        Log.println(Log.INFO, "DOWNLOADING URL", url);
     }
 
     // Handler that receives messages from the thread
@@ -35,7 +38,7 @@ public class DownloadService extends Service {
             // For our sample, we just sleep for 5 seconds.
 
             String url = msg.getData().getString("url");
-            Log.println(Log.INFO, "DOWNLOAD THREAD", "url");
+            Log.println(Log.INFO, "DOWNLOAD THREAD", "url: " + url);
             // TODO download
             download(url);
 
@@ -55,10 +58,10 @@ public class DownloadService extends Service {
                 Process.THREAD_PRIORITY_BACKGROUND);
         thread.start();
 
-        Toast.makeText(this, "This message will only appear once", Toast.LENGTH_LONG).show();
+        // Toast.makeText(this, "This message will only appear once", Toast.LENGTH_LONG).show();
 
         // TODO pedir aurotização para usar internet e o armazenamento interno
-        Log.println(Log.INFO, "REQUESTS", "REQUESTING INTERNET ACCESS AND INTERNAL STORAGE");
+        // Log.println(Log.INFO, "REQUESTS", "REQUESTING INTERNET ACCESS AND INTERNAL STORAGE");
 
         // Get the HandlerThread's Looper and use it for our Handler
         serviceLooper = thread.getLooper();
@@ -71,14 +74,19 @@ public class DownloadService extends Service {
         // Aqui é feito o pedido do download
 
         String url = intent.getExtras().getString("url");
-        Toast.makeText(this, url, Toast.LENGTH_LONG).show();
+        // Toast.makeText(this, url, Toast.LENGTH_LONG).show();
         Log.println(Log.INFO, "STARTING DOWNLOAD", url);
 
+        // Construindo mensagem
         Message message = serviceHandler.obtainMessage();
         message.arg1 = startId;
         Bundle bundle = new Bundle();
         bundle.putString("url", url);
         message.setData(bundle);
+        Log.println(Log.INFO, "MESSAGE CONTENT", message.arg1 + "; " + message.getData().getString("url"));
+
+        // Enviando mensagem
+        serviceHandler.sendMessage(message);
 
         return START_NOT_STICKY;
     }
@@ -92,6 +100,6 @@ public class DownloadService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.println(Log.INFO, "FINISHING DOWNLOAD", "DOWNLOAD FINISHED");
+        Log.println(Log.INFO, "FINISHING DOWNLOAD", "download finished");
     }
 }
