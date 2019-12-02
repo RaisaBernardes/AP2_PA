@@ -1,9 +1,13 @@
 package com.faculdade.libdownloadmanager;
 
 import android.Manifest;
+import android.app.DownloadManager;
 import android.app.Service;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.IBinder;
@@ -15,6 +19,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import java.io.File;
+
 public class DownloadService extends Service {
 
     private final int REQUEST_CODE = 1;
@@ -24,6 +30,26 @@ public class DownloadService extends Service {
 
     private void download(String url) {
         // TODO download
+        Uri uriURL = Uri.parse(url);
+
+        // Apenas para ter certeza de permissão da internet para uso em testes
+        if (checkSelfPermission(Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED) {
+            Log.println(Log.INFO, "INTERNET PERMISSION", "permission granted");
+        } else {
+            Log.println(Log.INFO, "INTERNET PERMISSION", "permission refused");
+        }
+
+//        File file = new File(getFilesDir(), "downloads");
+//        if (!file.exists()) {
+//            file.mkdir();
+//        }
+//
+//        DownloadManager.Request request = new DownloadManager.Request(uriURL)
+//                .setDestinationUri(Uri.fromFile(file));
+//
+//        DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
+//        downloadManager.enqueue(request);
+
         Log.println(Log.INFO, "DOWNLOADING URL", url);
     }
 
