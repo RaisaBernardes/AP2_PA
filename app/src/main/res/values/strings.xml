@@ -3,4 +3,6 @@
     <string name="Search"><font size="25">Search</font></string>
     <string name="videos">Videos</string>
     <string name="songs">Songs</string>
+    <string name="title">Title</string>
+    <string name="source">Source</string>
 </resources>
