@@ -28,35 +28,40 @@ public class DownloadService extends Service {
     private Looper serviceLooper;
     private ServiceHandler serviceHandler;
 
-    private void download(String url) {
-        // TODO download
-        Uri uriURL = Uri.parse(url);
+    private void download(String url, String type) {
 
         // Apenas para ter certeza de permissão da internet para uso em testes
         if (checkSelfPermission(Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED) {
-            Log.println(Log.INFO, "INTERNET PERMISSION", "permission granted");
+            Log.println(Log.INFO, "PERMISSION", "INTERNET permission granted");
         } else {
-            Log.println(Log.INFO, "INTERNET PERMISSION", "permission refused");
+            Log.println(Log.INFO, "INTERNET PERMISSION", "INTERNET permission refused");
         }
 
         // Apenas para ter certeza de permissão da escrita para uso em testes
         if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            Log.println(Log.INFO, "WRITE_EXTERNAL_STORAGE", "permission granted");
+            Log.println(Log.INFO, "PERMISSION", "WRITE_EXTERNAL_STORAGE permission granted");
         } else {
-            Log.println(Log.INFO, "WRITE_EXTERNAL_STORAGE", "permission refused");
+            Log.println(Log.INFO, "PERMISSION", "WRITE_EXTERNAL_STORAGE permission refused");
         }
 
-//        File file = new File(getFilesDir(), "downloads");
-//        if (!file.exists()) {
-//            file.mkdir();
-//        }
-        File file = new File(getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS), "pa_ap2");
+        // Preparando parâmetros para download
+        Uri uriURL = Uri.parse(url);
+        String formattedType;
+        if (type.charAt(0) == '.') {
+            formattedType = type;
+        } else {
+            formattedType = '.' + type;
+        }
+        // Preparação do arquivo (local de salvamento, nome e extensão)
+        File file = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS + File.separator + "pa_ap2" + formattedType);
 
         DownloadManager.Request request = new DownloadManager.Request(uriURL)
                 .setDestinationUri(Uri.fromFile(file));
 
         DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
         downloadManager.enqueue(request);
+
+
 
         Log.println(Log.INFO, "DOWNLOADING URL", url);
     }
@@ -72,8 +77,9 @@ public class DownloadService extends Service {
             // For our sample, we just sleep for 5 seconds.
 
             String url = msg.getData().getString("url");
-            Log.println(Log.INFO, "DOWNLOAD THREAD", "arg1: " + msg.arg1 + "; url: " + url);
-            download(url);
+            String type = msg.getData().getString("type");
+            Log.println(Log.INFO, "DOWNLOAD THREAD", "arg1: " + msg.arg1 + ";\n url: " + url + ";\n type: " + type);
+            download(url, type);
 
             // Stop the service using the startId, so that we don't stop
             // the service in the middle of handling another job
@@ -107,19 +113,21 @@ public class DownloadService extends Service {
         // Aqui é feito o pedido do download
 
         String url = intent.getExtras().getString("url");
-        // Toast.makeText(this, url, Toast.LENGTH_LONG).show();
-        Log.println(Log.INFO, "STARTING DOWNLOAD", url);
+        String type = intent.getExtras().getString("type");
+        Log.println(Log.INFO, "STARTING DOWNLOAD", url + "; " + type);
 
         // Construindo mensagem
         Message message = serviceHandler.obtainMessage();
         message.arg1 = startId;
         Bundle bundle = new Bundle();
         bundle.putString("url", url);
+        bundle.putString("type", type);
         message.setData(bundle);
 //        Log.println(Log.INFO, "MESSAGE CONTENT", message.arg1 + "; " + message.getData().getString("url"));
 
         // Enviando mensagem
         serviceHandler.sendMessage(message);
+        Toast.makeText(this, R.string.initializing_download, Toast.LENGTH_LONG).show();
 
         return START_NOT_STICKY;
     }
@@ -133,6 +141,6 @@ public class DownloadService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.println(Log.INFO, "FINISHING DOWNLOAD", "download finished");
+        Log.println(Log.INFO, "FINISHING DOWNLOAD", "download thread finished (it DOES NOT GRANT successful download!)");
     }
 }
