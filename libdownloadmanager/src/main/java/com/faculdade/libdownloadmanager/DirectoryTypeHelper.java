@@ -9,13 +9,14 @@ final class DirectoryTypeHelper {
             "png"
     };
     private static final String[] VIDEO = {
-            "mp4"
+            "mp4",
+            "3gp"
     };
     private static final String[] MUSIC = {
             "mp3"
     };
 
-    // Nós não instanciamos esse aqui
+    // We don't instantiate this one
     private DirectoryTypeHelper(){}
 
     public static String giveDirectoryType(String type) {

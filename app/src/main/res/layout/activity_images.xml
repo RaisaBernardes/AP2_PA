@@ -4,33 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/new_contact_background"
-    tools:context=".Activities.Learning.ContactDetailsActivity">
+    android:background="@drawable/basic_background"
+    tools:context=".Activities.Activities.ImagesActivity">
 
     <TextView
-        android:id="@+id/contactDetails_title"
+        android:id="@+id/image_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/calibre_regular"
-        android:text="Contact Details"
+        android:text="Images"
         android:textColor="@android:color/background_light"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.111"
+        app:layout_constraintHorizontal_bias="0.091"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.058" />
+        app:layout_constraintVertical_bias="0.056" />
 
-    <ImageView
-        android:id="@+id/arrowBack_contactDetails"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ListView
+        android:id="@+id/listView_songs"
+        android:layout_width="346dp"
+        android:layout_height="552dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777"
-        app:srcCompat="@drawable/arrow_left" />
+        app:layout_constraintVertical_bias="0.91" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

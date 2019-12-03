@@ -59,7 +59,7 @@ public class DownloadService extends Service {
 
         DownloadManager.Request request = new DownloadManager.Request(uriURL)
                 .setDestinationUri(Uri.fromFile(file))
-                .setTitle(R.string.downloading + " " + name)
+                .setTitle(name)
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
         DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);

@@ -14,8 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Learning.PlayVideoActivity"></activity>
-        <activity android:name=".Activities.Activities.ContactDetailsActivity" />
+        <activity android:name=".Activities.Activities.ImagesActivity"></activity>
+        <activity android:name=".Activities.Learning.PlayVideoActivity" />
+        <activity android:name=".Activities.Learning.ContactDetailsActivity" />
         <activity android:name=".Activities.Activities.NewContactActivity">
             <intent-filter>
                 <action android:name="android.intent.action.NEWCONTACT" />

@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
     private ImageView aContactsButton;
     private ImageView aMp3Button;
     private ImageView aVideosButton;
+    private ImageView aImageButton;
 
 
     @Override
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         aContactsButton = findViewById(R.id.contacts_button);
         aMp3Button = findViewById(R.id.mp3_button);
         aVideosButton = findViewById(R.id.videos_button);
+        aImageButton = findViewById(R.id.image_button);
+
 
 
         //----- Navigating between activities -----
@@ -51,6 +54,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, VideosActivity.class));
+            }
+        });
+
+        //MainActivity to ContactActivity
+        aImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, ImagesActivity.class));
             }
         });
 

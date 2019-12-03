@@ -16,15 +16,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.faculdade.libdownloadmanager.DownloadFacade;
 import com.faculdade.pa_ap2.R;
 
 public class Mp3Activity extends AppCompatActivity {
 
     ListView list;
-    String titles[] = {"Title 1", "Title 2", "Title 3", "Title 4"};
-    String sources[] = {"Source 1", "Source 2", "Source 3", "Source 4"};
+    String titles[] = {"Coldplay Album - Viva La Vida",
+                        "U2 Album - Beautiful Day",
+                        "Mumford and Sons Album - Hopeless",
+                        "The Fray Album - Somebody that I used to know"};
+    String sources[] = {"https://file.io/YRfYne", "https://file.io/sdmURl", "https://file.io/YtQlQX", "https://file.io/C07SoI"};
     //The images are from drawable
-    int imgs[] = {R.drawable.teste_imagem_musica, R.drawable.teste_imagem_musica, R.drawable.teste_imagem_musica, R.drawable.teste_imagem_musica};
+    int imgs[] = {R.drawable.vivalavida, R.drawable.u2, R.drawable.mumford, R.drawable.thefray};
 
 
 
@@ -47,7 +51,15 @@ public class Mp3Activity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if(position == 0){
-                    Toast.makeText(Mp3Activity.this, "TESTING! Item 1 clicked...", Toast.LENGTH_SHORT).show();
+                    DownloadFacade.getInstance().getDownloadController().download(view.getContext(), "https://file.io/YRfYne", "ColdPlay", "mp3");
+                }if(position == 1){
+                    DownloadFacade.getInstance().getDownloadController().download(view.getContext(), "https://file.io/sdmURl", "Gotye", "mp3");
+                }if(position == 2){
+                    DownloadFacade.getInstance().getDownloadController().download(view.getContext(), "https://file.io/YtQlQX", "MumfordAndSons", "mp3");
+                }if(position == 3){
+                    DownloadFacade.getInstance().getDownloadController().download(view.getContext(), "https://file.io/C07SoI", "TheFray", "mp3");
+                }if(position == 4){
+                    DownloadFacade.getInstance().getDownloadController().download(view.getContext(), "https://file.io/PDMwJJ", "U2", "mp3");
                 }
 
             }

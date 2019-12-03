@@ -1,4 +1,4 @@
-package com.faculdade.pa_ap2.Activities.Activities;
+package com.faculdade.pa_ap2.Activities.Learning;
 
 import androidx.appcompat.app.AppCompatActivity;
 
