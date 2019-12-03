@@ -15,7 +15,7 @@ public class Mp3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_mp3_activity);
 
         DownloadFacade.getInstance().getDownloadController()
-                .download(this, "https://www.infoescola.com/wp-content/uploads/2017/07/baleia-azul-565369243.jpg");
+                .download(this, "https://www.infoescola.com/wp-content/uploads/2017/07/baleia-azul-565369243.jpg", "jpg");
                 //Obs.: The activity is already a context!
 
 
