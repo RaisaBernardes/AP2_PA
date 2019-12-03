@@ -19,7 +19,7 @@ class DownloadController implements IDownloadController {
     }
 
     @Override
-    public void download(Context context, String url,String name ,String type) {
+    public void download(Context context, String url, String name, String type) {
         //Toast.makeText(context, url, Toast.LENGTH_LONG).show();
 
         Intent intent = new Intent(context, DownloadService.class)

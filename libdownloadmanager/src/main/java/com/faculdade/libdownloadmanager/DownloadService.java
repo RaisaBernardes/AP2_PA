@@ -59,7 +59,7 @@ public class DownloadService extends Service {
 
         DownloadManager.Request request = new DownloadManager.Request(uriURL)
                 .setDestinationUri(Uri.fromFile(file))
-                .setTitle(R.string.downloading + name)
+                .setTitle(R.string.downloading + " " + name)
                 .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
         DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
@@ -103,14 +103,10 @@ public class DownloadService extends Service {
 
         // Toast.makeText(this, "This message will only appear once", Toast.LENGTH_LONG).show();
 
-        // TODO pedir aurotização para usar internet e o armazenamento interno
-        // Log.println(Log.INFO, "REQUESTS", "REQUESTING INTERNET ACCESS AND INTERNAL STORAGE");
-
         // Get the HandlerThread's Looper and use it for our Handler
         serviceLooper = thread.getLooper();
         serviceHandler = new ServiceHandler(serviceLooper);
     }
-
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
