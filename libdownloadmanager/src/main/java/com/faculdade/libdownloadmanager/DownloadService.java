@@ -28,7 +28,7 @@ public class DownloadService extends Service {
     private Looper serviceLooper;
     private ServiceHandler serviceHandler;
 
-    private void download(String url, String type) {
+    private void download(String url, String name, String type) {
 
         // Apenas para ter certeza de permissão da internet para uso em testes
         if (checkSelfPermission(Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED) {
@@ -52,11 +52,15 @@ public class DownloadService extends Service {
         } else {
             formattedType = '.' + type;
         }
+
         // Preparação do arquivo (local de salvamento, nome e extensão)
-        File file = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS + File.separator + "pa_ap2" + formattedType);
+//        File file = new File(Environment.getExternalStorageDirectory(), Environment.DIRECTORY_DOWNLOADS + File.separator + "pa_ap2" + formattedType);
+        File file = new File(Environment.getExternalStorageDirectory(), DirectoryTypeHelper.giveDirectoryType(formattedType) + File.separator + name + formattedType);
 
         DownloadManager.Request request = new DownloadManager.Request(uriURL)
-                .setDestinationUri(Uri.fromFile(file));
+                .setDestinationUri(Uri.fromFile(file))
+                .setTitle(R.string.downloading + " " + name)
+                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
 
         DownloadManager downloadManager = (DownloadManager) getSystemService(DOWNLOAD_SERVICE);
         downloadManager.enqueue(request);
@@ -74,12 +78,12 @@ public class DownloadService extends Service {
         @Override
         public void handleMessage(Message msg) {
             // Normally we would do some work here, like download a file.
-            // For our sample, we just sleep for 5 seconds.
 
             String url = msg.getData().getString("url");
+            String name = msg.getData().getString("name");
             String type = msg.getData().getString("type");
             Log.println(Log.INFO, "DOWNLOAD THREAD", "arg1: " + msg.arg1 + ";\n url: " + url + ";\n type: " + type);
-            download(url, type);
+            download(url, name, type);
 
             // Stop the service using the startId, so that we don't stop
             // the service in the middle of handling another job
@@ -99,20 +103,17 @@ public class DownloadService extends Service {
 
         // Toast.makeText(this, "This message will only appear once", Toast.LENGTH_LONG).show();
 
-        // TODO pedir aurotização para usar internet e o armazenamento interno
-        // Log.println(Log.INFO, "REQUESTS", "REQUESTING INTERNET ACCESS AND INTERNAL STORAGE");
-
         // Get the HandlerThread's Looper and use it for our Handler
         serviceLooper = thread.getLooper();
         serviceHandler = new ServiceHandler(serviceLooper);
     }
-
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Aqui é feito o pedido do download
 
         String url = intent.getExtras().getString("url");
+        String name = intent.getExtras().getString("name");
         String type = intent.getExtras().getString("type");
         Log.println(Log.INFO, "STARTING DOWNLOAD", url + "; " + type);
 
@@ -121,13 +122,14 @@ public class DownloadService extends Service {
         message.arg1 = startId;
         Bundle bundle = new Bundle();
         bundle.putString("url", url);
+        bundle.putString("name", name);
         bundle.putString("type", type);
         message.setData(bundle);
 //        Log.println(Log.INFO, "MESSAGE CONTENT", message.arg1 + "; " + message.getData().getString("url"));
 
         // Enviando mensagem
         serviceHandler.sendMessage(message);
-        Toast.makeText(this, R.string.initializing_download, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.starting_download, Toast.LENGTH_LONG).show();
 
         return START_NOT_STICKY;
     }
