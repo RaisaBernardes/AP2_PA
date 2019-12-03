@@ -1,4 +1,4 @@
-package com.faculdade.pa_ap2.Activities;
+package com.faculdade.pa_ap2.Activities.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +22,7 @@ public class TestLibActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 DownloadFacade.getInstance().getDownloadController()
-                        .download(view.getContext(), "https://www.infoescola.com/wp-content/uploads/2017/07/baleia-azul-565369243.jpg", ".jpg");
+                        .download(view.getContext(), "https://www.infoescola.com/wp-content/uploads/2017/07/baleia-azul-565369243.jpg", "Vivalavida",".jpg");
             }
         });
     }

@@ -1,4 +1,4 @@
-package com.faculdade.pa_ap2.Activities;
+package com.faculdade.pa_ap2.Activities.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

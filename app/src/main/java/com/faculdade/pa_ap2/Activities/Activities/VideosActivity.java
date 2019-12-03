@@ -1,10 +1,12 @@
-package com.faculdade.pa_ap2.Activities;
+package com.faculdade.pa_ap2.Activities.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.faculdade.libdownloadmanager.DownloadFacade;
 import com.faculdade.pa_ap2.R;
 
 public class VideosActivity extends AppCompatActivity {
@@ -45,8 +48,19 @@ public class VideosActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                //Asking permission
+                requestPermissions(new String[]{
+                        Manifest.permission.INTERNET, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 3);
+
                 if(position == 0){
-                    Toast.makeText(VideosActivity.this, "TESTING! Item 1 clicked...", Toast.LENGTH_SHORT).show();
+                    //Getting the download from lib
+                    //TODO: The download down below is unsuccessful
+                    DownloadFacade.getInstance().getDownloadController().download(view.getContext(), "http://www.ted.com/talks/download/video/8584/talk/761", "tedTalk", "3gp");
+
+                    //Testing if it's working
+                    //Toast.makeText(VideosActivity.this, "TESTING! Item 1 clicked...", Toast.LENGTH_SHORT).show();
+                }if(position == 1){
+
                 }
 
             }

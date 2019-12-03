@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.faculdade.pa_ap2">
 
-
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -15,13 +14,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.ContactDetailsActivity"></activity>
-        <activity android:name=".Activities.NewContactActivity">
+        <activity android:name=".Activities.Learning.PlayVideoActivity"></activity>
+        <activity android:name=".Activities.Activities.ContactDetailsActivity" />
+        <activity android:name=".Activities.Activities.NewContactActivity">
             <intent-filter>
-                <action android:name="android.intent.action.NEWCONTACT"/>
+                <action android:name="android.intent.action.NEWCONTACT" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.faculdade.pa_ap2.Provider"
@@ -32,16 +34,17 @@
                 android:resource="@xml/file_paths" />
         </provider>
 
-        <activity android:name=".Activities.ContactsActivity" />
-        <activity android:name=".Activities.VideosActivity" />
-        <activity android:name=".Activities.Mp3Activity" />
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.Activities.ContactsActivity" />
+        <activity android:name=".Activities.Activities.VideosActivity" />
+        <activity android:name=".Activities.Activities.Mp3Activity" />
+        <activity android:name=".Activities.Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.TestLibActivity"/>
+        <activity android:name=".Activities.Activities.TestLibActivity" />
     </application>
+
 </manifest>

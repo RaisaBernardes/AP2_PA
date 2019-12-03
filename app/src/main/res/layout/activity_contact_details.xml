@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/new_contact_background"
-    tools:context=".Activities.ContactDetailsActivity">
+    tools:context=".Activities.Activities.ContactDetailsActivity">
 
     <TextView
         android:id="@+id/contactDetails_title"

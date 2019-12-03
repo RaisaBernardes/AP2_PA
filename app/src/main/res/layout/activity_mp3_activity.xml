@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/basic_background"
-    tools:context=".Activities.Mp3Activity">
+    tools:context=".Activities.Activities.Mp3Activity">
 
     <TextView
         android:id="@+id/mp3_title"
