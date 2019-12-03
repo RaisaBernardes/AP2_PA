@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">LibDownloadManager</string>
-    <string name="initializing_download">Initializing download of</string>
+    <string name="starting_download">Starting download</string>
 </resources>

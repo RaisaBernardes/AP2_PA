@@ -127,9 +127,9 @@ public class DownloadService extends Service {
 
         // Enviando mensagem
         serviceHandler.sendMessage(message);
-        Toast.makeText(this, R.string.initializing_download, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.starting_download, Toast.LENGTH_LONG).show();
 
-        return START_NOT_STICKY;
+        return START_STICKY;
     }
 
     @Nullable
