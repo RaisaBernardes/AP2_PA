@@ -28,7 +28,7 @@ public class VideosActivity extends AppCompatActivity {
                         "U2 Album - Beautiful Day",
                         "Mumford and Sons Album - Hopeless",
                         "The Fray Album - Somebody that I used to know"};
-    String sources[] = {"Source 1", "Source 2", "Source 3", "Source 4"};
+    String sources[] = {"https://file.io/i0eBhv", "https://file.io/UrLuiH", "https://file.io/JcixCE", "https://file.io/xi0Cp2"};
 
     //The images are from drawable
     int imgs[] = {R.drawable.vivalavida, R.drawable.u2, R.drawable.mumford, R.drawable.thefray};
